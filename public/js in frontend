@@ -1,0 +1,50 @@
+const productsDiv =
+document.getElementById(
+"products"
+);
+
+fetch("/api/products")
+.then(res=>res.json())
+.then(products=>{
+
+products.forEach(product=>{
+
+productsDiv.innerHTML += `
+<div class="card">
+<h3>${product.name}</h3>
+
+<img src="${product.image}">
+
+<p>
+${product.price}
+</p>
+
+<button
+onclick="addToCart(
+'${product._id}'
+)">
+Add To Cart
+</button>
+
+</div>
+`;
+
+});
+});
+
+function addToCart(id){
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+cart.push(id);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert("Added");
+}
