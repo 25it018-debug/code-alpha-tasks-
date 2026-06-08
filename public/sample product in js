@@ -1,0 +1,16 @@
+use ecommerce
+
+db.products.insertMany([
+{
+name:"Laptop",
+description:"Dell Laptop",
+price:50000,
+image:"https://picsum.photos/200"
+},
+{
+name:"Phone",
+description:"Samsung Phone",
+price:20000,
+image:"https://picsum.photos/200"
+}
+])
