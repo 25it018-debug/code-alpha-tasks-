@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Cart</h1>
+
+<div id="cart"></div>
+
+<button onclick="checkout()">
+Place Order
+</button>
+
+<script>
+
+const cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+document.getElementById(
+"cart"
+).innerHTML =
+cart.join("<br>");
+
+function checkout(){
+
+fetch("/api/orders",{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+userId:"1",
+products:cart,
+totalAmount:1000
+})
+})
+.then(res=>res.json())
+.then(data=>{
+alert(data.message);
+});
+}
+
+</script>
+
+</body>
+</html>
